@@ -19,6 +19,9 @@ app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
 /** ROUTER */
 // app.use('/auth', authRoutes)
 app.use('/transactions', transactionRoutes)
+app.all('*', (req, res) => {
+  res.status(404).json({ err: 'Page not found' })
+})
 
 const PORT = process.env.PORT || 4000
 
