@@ -9,17 +9,20 @@ import transactionRoutes from './routes/transaction.js'
 
 const app = express()
 
+/** CONFIGURATION */
 dotenv.config()
 app.use(express.json())
 app.use(cors())
 app.use(helmet())
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }))
 
+/** ROUTER */
 // app.use('/auth', authRoutes)
 app.use('/transactions', transactionRoutes)
 
 const PORT = process.env.PORT || 4000
 
+/** DB SETUP */
 mongoose.set('strictQuery', false)
 mongoose
   .connect(process.env.MONGODB_URL, {
